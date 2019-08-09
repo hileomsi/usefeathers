@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { findAndUpdateItem, findAndRemoveItem, destructuringParams } from './helpers';
+import { findAndUpdateItem, findAndRemoveItem, destructuringFindParams } from './helpers';
 import { Feathers } from './useFeathers';
 
 const defaultDataPaginate = {
@@ -15,8 +15,9 @@ const defaultData = [];
 const getDefaultData = ({ paginate }) => paginate ? defaultDataPaginate : defaultData;
 
 export default (...args) => {
-  const { path, query, options, isFunction } = destructuringParams(...args);
+  const { path, query: queryTemp, options, isFunction } = destructuringFindParams(...args);
   const { paginate, realtime } = options;
+  const [query, setQuery] = useState(queryTemp);
   const [data, setData] = useState(getDefaultData(options));
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -26,12 +27,13 @@ export default (...args) => {
   | find
   |--------------------------------------------------
   */
-  const find = useCallback(async () => {
+  const find = useCallback(async (queryParam = query) => {
     const Service = Feathers.service(path);
 
     try {
+      setQuery(queryParam || query);
       setLoading(true);
-      const response = await Service.find({ query });
+      const response = await Service.find({ query: queryParam });
       setData(response);
       setError(null);
 
@@ -55,7 +57,7 @@ export default (...args) => {
       $skip: data.data.length,
       ...query
     };
-    
+
     try {
       setLoading(true);
       const response = await Service.find({ query: queryPaginate });
@@ -153,7 +155,7 @@ export default (...args) => {
 
   if(!isFunction) {
     useEffect(() => {
-      find();
+      find(query);
     }, []);
   }
 

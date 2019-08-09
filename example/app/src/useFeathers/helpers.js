@@ -17,7 +17,7 @@ export function findAndRemoveItem(items, item) {
   return items.filter(i => i._id !== item._id);
 };
 
-export function destructuringParams(...args) {
+export function destructuringFindParams(...args) {
   let path;
   let query;
   let options = defaultOptions;
@@ -35,4 +35,26 @@ export function destructuringParams(...args) {
   }
 
   return { path, query, options, isFunction };
+}
+
+export function destructuringGetParams(...args) {
+  let id;
+  let path;
+  let query;
+  let options = defaultOptions;
+  const isFunction = typeof args[0] === 'function';
+
+  if(isFunction) {
+    const [getPath, optionsParam] = args;
+    path = getPath();
+    options = optionsParam;
+  } else {
+    const [pathParam, idParam, queryParam, optionsParam] = args;
+    id = idParam;
+    path = pathParam;
+    query = queryParam;
+    options = optionsParam;
+  }
+
+  return { path, id, query, options, isFunction };
 }
