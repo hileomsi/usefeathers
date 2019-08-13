@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { destructuringCreateParams } from './helpers';
+import { destructuringPatchParams } from './helpers';
 import { Feathers } from './useFeathers';
 
 export default (...args) => {
-  const { path, id: idDefault, data: dataDefault, query: queryDefault, isFunction } = destructuringCreateParams(...args);
-  const [id, setId] = useState(idDefault);
+  const { path, id: idDefault, data: dataDefault, query: queryDefault, isFunction } = destructuringPatchParams(...args);
+  const [id] = useState(idDefault);
   const [query, setQuery] = useState(queryDefault);
   const [data, setData] = useState(dataDefault);
   const [loading, setLoading] = useState(false);
@@ -16,13 +16,13 @@ export default (...args) => {
   | patch
   |--------------------------------------------------
   */
-  const patch = useCallback(async (idParam = id, dataParam = data, queryParam = query) => {
+  const patch = useCallback(async (idParam, dataParam, queryParam) => {
     const Service = Feathers.service(path);
 
     try {
       setQuery(queryParam);
       setLoading(true);
-      const response = await Service.patch(dataParam, { query: queryParam });
+      const response = await Service.patch(idParam, dataParam, { query: queryParam });
       setData(response);
       setError(null);
 
@@ -36,10 +36,10 @@ export default (...args) => {
 
   if(!isFunction) {
     useEffect(() => {
-      create(data, query);
+      patch(id, data, query);
     }, []);
   }
 
-  if(isFunction) return [create, data, loading, error];
+  if(isFunction) return [patch, data, loading, error];
   return [data, loading, error];
 };
