@@ -7,8 +7,8 @@
 - [x] useFind
 - [x] useGet
 - [x] useCreate
-- [ ] usePatch
-- [ ] useUpdate
+- [x] usePatch
+- [x] useUpdate
 - [ ] useRemove
 - [x] useRealtime
 - [ ] useAuthenticate

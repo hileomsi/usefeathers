@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { destructuringPatchParams } from './helpers';
+import { destructuringPatchAndUpdateParams } from './helpers';
 import { Feathers } from './useFeathers';
 
 export default (...args) => {
-  const { path, id: idDefault, data: dataDefault, query: queryDefault, isFunction } = destructuringPatchParams(...args);
+  const { path, id: idDefault, data: dataDefault, query: queryDefault, isFunction } = destructuringPatchAndUpdateParams(...args);
   const [id] = useState(idDefault);
   const [query, setQuery] = useState(queryDefault);
   const [data, setData] = useState(dataDefault);

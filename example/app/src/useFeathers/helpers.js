@@ -78,7 +78,7 @@ export function destructuringCreateParams(...args) {
   return { path, data, query, isFunction };
 };
 
-export function destructuringPatchParams(...args) {
+export function destructuringPatchAndUpdateParams(...args) {
   let id;
   let path;
   let data = {};
