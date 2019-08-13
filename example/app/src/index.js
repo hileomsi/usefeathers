@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './ExampleUseGet02';
+import App from './ExampleUseRealtime01';
 import * as serviceWorker from './serviceWorker';
 
 import { useFeathers } from './useFeathers';

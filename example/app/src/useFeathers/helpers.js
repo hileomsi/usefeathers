@@ -58,3 +58,24 @@ export function destructuringGetParams(...args) {
 
   return { path, id, query, options, isFunction };
 }
+
+export function destructuringCreateParams(...args) {
+  let path;
+  let data = {};
+  let query;
+  const isFunction = typeof args[0] === 'function';
+
+  console.log(args);
+
+  if(isFunction) {
+    const [getPath] = args;
+    path = getPath();
+  } else {
+    const [pathParam, dataParam, queryParam] = args;
+    path = pathParam;
+    data = dataParam || data;
+    query = queryParam;
+  }
+
+  return { path, data, query, isFunction };
+};

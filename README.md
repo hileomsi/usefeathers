@@ -6,10 +6,10 @@
 - [x] useFeathers
 - [x] useFind
 - [x] useGet
-- [ ] useCreate
+- [x] useCreate
 - [ ] usePatch
 - [ ] useUpdate
 - [ ] useRemove
-- [ ] useRealtime
+- [x] useRealtime
 - [ ] useAuthenticate
 - [ ] useAuthenticated
