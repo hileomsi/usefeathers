@@ -14,8 +14,12 @@ function App() {
         {loading && <span>Carregando...</span>}
         {!loading && <span>Não carregando...</span>}
         {error && <span>{error}</span>}
-        <div>{user.email}</div>
-        <div>{user.name}</div>
+        {user && (
+          <>
+            <div>{user.email}</div>
+            <div>{user.name}</div>
+          </>
+        )}
       </header>
     </div>
   );

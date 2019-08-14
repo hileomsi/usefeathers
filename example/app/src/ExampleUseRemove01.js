@@ -1,13 +1,10 @@
 import React from 'react';
 import './App.css';
 
-import { useCreate } from './useFeathers';
+import { useRemove } from './useFeathers';
 
 function App() {
-  const [user, loading, error] = useCreate('users', {
-    name: 'useCreate',
-    email: 'useCreate@gmail.com'
-  });
+  const [user, loading, error] = useRemove('users', 'DIh3Wtr3nA72Twqs');
 
   console.log('user => ', user);
 
@@ -18,7 +15,7 @@ function App() {
         {!loading && <span>Não carregando...</span>}
         {error && <span>{error}</span>}
         {user && (
-          <span>Cadastro do usuario {user.name} realizado com sucesso.</span>
+          <span>Usuario removido. {user.name}.</span>
         )}
       </header>
     </div>

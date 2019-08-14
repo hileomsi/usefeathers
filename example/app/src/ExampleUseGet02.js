@@ -21,8 +21,12 @@ function App() {
         {!loading && <span>Não carregando...</span>}
         {error && <span>{error}</span>}
         <button onClick={handleGetUser}>GET</button>
-        <div>{user.email}</div>
-        <div>{user.name}</div>
+        {user && (
+          <>
+            <div>{user.email}</div>
+            <div>{user.name}</div>
+          </>
+        )}
       </header>
     </div>
   );

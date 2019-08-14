@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './ExampleUseUpdate02';
+import App from './ExampleUseRemove02';
 
-import { useFeathers } from './useFeathers';
+import useFeathers from './useFeathers';
 import Feathers from './feathers';
-
 
 useFeathers(Feathers);
 

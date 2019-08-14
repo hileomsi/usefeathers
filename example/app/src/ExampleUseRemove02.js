@@ -1,16 +1,13 @@
 import React from 'react';
 import './App.css';
 
-import { useCreate } from './useFeathers';
+import { useRemove } from './useFeathers';
 
 function App() {
-  const [createUser, user, loading, error] = useCreate(() => 'users');
+  const [removeUser, user, loading, error] = useRemove(() => 'users');
 
-  async function handleCreateUser() {
-    const response = await createUser({
-      name: 'Estevam',
-      email: 'estevam@gmail.com'
-    });
+  async function handleRemoveUser() {
+    const response = await removeUser('FQy32OAzJpckPmPd'); 
     console.log('response => ', response);
   }
 
@@ -20,9 +17,9 @@ function App() {
         {loading && <span>Carregando...</span>}
         {!loading && <span>Não carregando...</span>}
         {error && <span>{error}</span>}
-        <button onClick={handleCreateUser}>Create User</button>
+        <button onClick={handleRemoveUser}>REMOVE</button>
         {user && (
-          <span>Cadastro do usuario {user.name} realizado com sucesso.</span>
+          <span>Usuario removido. {user.name}.</span>
         )}
       </header>
     </div>

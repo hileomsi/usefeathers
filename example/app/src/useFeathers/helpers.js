@@ -61,7 +61,7 @@ export function destructuringGetParams(...args) {
 
 export function destructuringCreateParams(...args) {
   let path;
-  let data = {};
+  let data;
   let query;
   const isFunction = typeof args[0] === 'function';
 
@@ -81,7 +81,7 @@ export function destructuringCreateParams(...args) {
 export function destructuringPatchAndUpdateParams(...args) {
   let id;
   let path;
-  let data = {};
+  let data;
   let query;
   const isFunction = typeof args[0] === 'function';
 
@@ -97,4 +97,23 @@ export function destructuringPatchAndUpdateParams(...args) {
   }
 
   return { path, id, data, query, isFunction };
+};
+
+export function destructuringRemoveParams(...args) {
+  let id;
+  let path;
+  let query;
+  const isFunction = typeof args[0] === 'function';
+
+  if(isFunction) {
+    const [getPath] = args;
+    path = getPath();
+  } else {
+    const [pathParam, idParam, queryParam] = args;
+    id = idParam;
+    path = pathParam;
+    query = queryParam;
+  }
+
+  return { id, path, query, isFunction };
 };

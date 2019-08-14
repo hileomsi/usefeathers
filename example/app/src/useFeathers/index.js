@@ -7,8 +7,8 @@ import useUpdate from './useUpdate';
 import useRemove from './useRemove';
 import useRealtime from './useRealtime';
 
+export default useFeathers; 
 export {
-  useFeathers,
   useFind,
   useGet,
   useCreate,

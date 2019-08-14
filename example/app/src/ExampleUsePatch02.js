@@ -21,7 +21,7 @@ function App() {
         {!loading && <span>Não carregando...</span>}
         {error && <span>{error}</span>}
         <button onClick={handlePatchUser}>PATCH</button>
-        {user._id && (
+        {user && (
           <span>Usuario atualizado com patch {user.name}.</span>
         )}
       </header>

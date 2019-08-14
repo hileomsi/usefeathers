@@ -9,7 +9,7 @@
 - [x] useCreate
 - [x] usePatch
 - [x] useUpdate
-- [ ] useRemove
+- [x] useRemove
 - [x] useRealtime
 - [ ] useAuthenticate
 - [ ] useAuthenticated
