@@ -1,31 +1,8 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useState, useCallback, useEffect } from 'react';
-// import useFeathers from './useFeathers';
-// import useFind from './useFind';
-// import useGet from './useGet';
-// import useCreate from './useCreate';
-// import usePatch from './usePatch';
-// import useUpdate from './useUpdate';
-// import useRemove from './useRemove';
-// import useRealtime from './useRealtime';
-// import useLogout from './useLogout';
-// import useAuthenticate from './useAuthenticate';
-// import useAuthenticationEvents from './useAuthenticationEvents';
+'use strict';
 
-// export default useFeathers; 
-// export {
-//   useFind,
-//   useGet,
-//   useCreate,
-//   usePatch,
-//   useUpdate,
-//   useRemove,
-//   useRealtime,
-//   useAuthenticationEvents,
-//   useAuthenticate,
-//   useLogout
-// };
+Object.defineProperty(exports, '__esModule', { value: true });
 
+var react = require('react');
 
 let Feathers;
 
@@ -166,17 +143,17 @@ const getDefaultData = ({ paginate }) => paginate ? defaultDataPaginate : defaul
 var useFind = (...args) => {
   const { path, query: queryTemp, options, isFunction } = destructuringFindParams(...args);
   const { paginate, realtime } = options;
-  const [query, setQuery] = useState(queryTemp);
-  const [data, setData] = useState(getDefaultData(options));
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [query, setQuery] = react.useState(queryTemp);
+  const [data, setData] = react.useState(getDefaultData(options));
+  const [loading, setLoading] = react.useState(false);
+  const [error, setError] = react.useState(null);
 
   /**
   |--------------------------------------------------
   | find
   |--------------------------------------------------
   */
-  const find = useCallback(async (queryParam = query) => {
+  const find = react.useCallback(async (queryParam = query) => {
     const Service = Feathers.service(path);
 
     try {
@@ -199,7 +176,7 @@ var useFind = (...args) => {
   | fetchMore
   |--------------------------------------------------
   */
-  const fetchMore = useCallback(async () => {
+  const fetchMore = react.useCallback(async () => {
     const Service = Feathers.service(path);
     const queryPaginate = {
       $limit: data.limit,
@@ -231,7 +208,7 @@ var useFind = (...args) => {
     | onCreated
     |--------------------------------------------------
     */
-    useEffect(() => {
+    react.useEffect(() => {
       const Service = Feathers.service(path);
       function onCreatedListener(item) {
         const items = paginate ? data.data : data; 
@@ -249,7 +226,7 @@ var useFind = (...args) => {
     | onUpdated
     |--------------------------------------------------
     */
-    useEffect(() => {
+    react.useEffect(() => {
       const Service = Feathers.service(path);
       function onUpdatedListener(item) {
         const items = paginate ? data.data : data; 
@@ -268,7 +245,7 @@ var useFind = (...args) => {
     | onPatched
     |--------------------------------------------------
     */
-    useEffect(() => {
+    react.useEffect(() => {
       const Service = Feathers.service(path);
       function onPatchedListener(item) {
         const items = paginate ? data.data : data; 
@@ -287,7 +264,7 @@ var useFind = (...args) => {
     | onRemoved
     |--------------------------------------------------
     */
-    useEffect(() => {
+    react.useEffect(() => {
       const Service = Feathers.service(path);
       function onRemovedListener(item) {
         const items = paginate ? data.data : data; 
@@ -303,7 +280,7 @@ var useFind = (...args) => {
   }
 
   if(!isFunction) {
-    useEffect(() => {
+    react.useEffect(() => {
       find(query);
     }, []);
   }
@@ -317,18 +294,18 @@ var useFind = (...args) => {
 var useGet = (...args) => {
   const { path, id: idTemp, query: queryTemp, options, isFunction } = destructuringGetParams(...args);
   const { realtime } = options;
-  const [id, setId] = useState(idTemp);
-  const [query, setQuery] = useState(queryTemp);
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [id, setId] = react.useState(idTemp);
+  const [query, setQuery] = react.useState(queryTemp);
+  const [data, setData] = react.useState(null);
+  const [loading, setLoading] = react.useState(false);
+  const [error, setError] = react.useState(null);
 
   /**
   |--------------------------------------------------
   | get
   |--------------------------------------------------
   */
-  const get = useCallback(async (idParam = id, queryParam = query) => {
+  const get = react.useCallback(async (idParam = id, queryParam = query) => {
     const Service = Feathers.service(path);
 
     try {
@@ -353,7 +330,7 @@ var useGet = (...args) => {
     | onUpdated
     |--------------------------------------------------
     */
-    useEffect(() => {
+    react.useEffect(() => {
       const Service = Feathers.service(path);
       function onUpdatedListener(item) {
         if(item._id === data._id) {
@@ -372,7 +349,7 @@ var useGet = (...args) => {
     | onPatched
     |--------------------------------------------------
     */
-    useEffect(() => {
+    react.useEffect(() => {
       const Service = Feathers.service(path);
       function onPatchedListener(item) {
         if(item._id === data._id) {
@@ -391,7 +368,7 @@ var useGet = (...args) => {
     | onRemoved
     |--------------------------------------------------
     */
-    useEffect(() => {
+    react.useEffect(() => {
       const Service = Feathers.service(path);
       function onRemovedListener(item) {
         if(item._id === data._id) {
@@ -407,7 +384,7 @@ var useGet = (...args) => {
   }
 
   if(!isFunction) {
-    useEffect(() => {
+    react.useEffect(() => {
       get(id, query);
     }, []);
   }
@@ -418,17 +395,17 @@ var useGet = (...args) => {
 
 var useCreate = (...args) => {
   const { path, data: dataDefault, query: queryDefault, isFunction } = destructuringCreateParams(...args);
-  const [query, setQuery] = useState(queryDefault);
-  const [data, setData] = useState(dataDefault);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [query, setQuery] = react.useState(queryDefault);
+  const [data, setData] = react.useState(dataDefault);
+  const [loading, setLoading] = react.useState(false);
+  const [error, setError] = react.useState(null);
 
   /**
   |--------------------------------------------------
   | create
   |--------------------------------------------------
   */
-  const create = useCallback(async (dataParam = data, queryParam = query) => {
+  const create = react.useCallback(async (dataParam = data, queryParam = query) => {
     const Service = Feathers.service(path);
 
     try {
@@ -447,7 +424,7 @@ var useCreate = (...args) => {
   }, [path, query]);
 
   if(!isFunction) {
-    useEffect(() => {
+    react.useEffect(() => {
       create(data, query);
     }, []);
   }
@@ -458,18 +435,18 @@ var useCreate = (...args) => {
 
 var usePatch = (...args) => {
   const { path, id: idDefault, data: dataDefault, query: queryDefault, isFunction } = destructuringPatchAndUpdateParams(...args);
-  const [id] = useState(idDefault);
-  const [query, setQuery] = useState(queryDefault);
-  const [data, setData] = useState(dataDefault);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [id] = react.useState(idDefault);
+  const [query, setQuery] = react.useState(queryDefault);
+  const [data, setData] = react.useState(dataDefault);
+  const [loading, setLoading] = react.useState(false);
+  const [error, setError] = react.useState(null);
 
   /**
   |--------------------------------------------------
   | patch
   |--------------------------------------------------
   */
-  const patch = useCallback(async (idParam, dataParam, queryParam) => {
+  const patch = react.useCallback(async (idParam, dataParam, queryParam) => {
     const Service = Feathers.service(path);
 
     try {
@@ -488,7 +465,7 @@ var usePatch = (...args) => {
   }, [path, query]);
 
   if(!isFunction) {
-    useEffect(() => {
+    react.useEffect(() => {
       patch(id, data, query);
     }, []);
   }
@@ -499,18 +476,18 @@ var usePatch = (...args) => {
 
 var useUpdate = (...args) => {
   const { path, id: idDefault, data: dataDefault, query: queryDefault, isFunction } = destructuringPatchAndUpdateParams(...args);
-  const [id] = useState(idDefault);
-  const [query, setQuery] = useState(queryDefault);
-  const [data, setData] = useState(dataDefault);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [id] = react.useState(idDefault);
+  const [query, setQuery] = react.useState(queryDefault);
+  const [data, setData] = react.useState(dataDefault);
+  const [loading, setLoading] = react.useState(false);
+  const [error, setError] = react.useState(null);
 
   /**
   |--------------------------------------------------
   | update
   |--------------------------------------------------
   */
-  const update = useCallback(async (idParam, dataParam, queryParam) => {
+  const update = react.useCallback(async (idParam, dataParam, queryParam) => {
     const Service = Feathers.service(path);
 
     try {
@@ -529,7 +506,7 @@ var useUpdate = (...args) => {
   }, [path, query]);
 
   if(!isFunction) {
-    useEffect(() => {
+    react.useEffect(() => {
       update(id, data, query);
     }, []);
   }
@@ -540,18 +517,18 @@ var useUpdate = (...args) => {
 
 var useRemove = (...args) => {
   const { path, id: idDefault, query: queryDefault, isFunction } = destructuringRemoveParams(...args);
-  const [id] = useState(idDefault);
-  const [query, setQuery] = useState(queryDefault);
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [id] = react.useState(idDefault);
+  const [query, setQuery] = react.useState(queryDefault);
+  const [data, setData] = react.useState(null);
+  const [loading, setLoading] = react.useState(false);
+  const [error, setError] = react.useState(null);
 
   /**
   |--------------------------------------------------
   | remove
   |--------------------------------------------------
   */
-  const remove = useCallback(async (idParam, queryParam) => {
+  const remove = react.useCallback(async (idParam, queryParam) => {
     const Service = Feathers.service(path);
 
     try {
@@ -570,7 +547,7 @@ var useRemove = (...args) => {
   }, [path, query]);
 
   if(!isFunction) {
-    useEffect(() => {
+    react.useEffect(() => {
       remove(id, data, query);
     }, []);
   }
@@ -580,8 +557,8 @@ var useRemove = (...args) => {
 };
 
 var useRealtime = (path, event, onSuccess) => {
-  const [data, setData] = useState(null);
-  useEffect(() => {
+  const [data, setData] = react.useState(null);
+  react.useEffect(() => {
     const Service = Feathers.service(path);
     
     function onEvent(...args) {
@@ -602,7 +579,7 @@ var useRealtime = (path, event, onSuccess) => {
 };
 
 var useLogout = () => {
-  const logout = useCallback(() => {
+  const logout = react.useCallback(() => {
     return Feathers.logout();
   }, []);
 
@@ -610,17 +587,17 @@ var useLogout = () => {
 };
 
 var useAuthenticate = () => {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
+  const [authenticated, setAuthenticated] = react.useState(false);
+  const [loading, setLoading] = react.useState(false);
+  const [response, setResponse] = react.useState(null);
+  const [error, setError] = react.useState(null);
 
   /**
   |--------------------------------------------------
   | authenticate
   |--------------------------------------------------
   */
-  const authenticate = useCallback(async data => {
+  const authenticate = react.useCallback(async data => {
     try {
       setLoading(true);
       const response = await Feathers.authenticate(data);
@@ -646,8 +623,8 @@ const events = [
 var useAuthenticationEvents = (event, onSuccess) => {
   if(!events.includes(event)) throw new Error('event not support.');
 
-  const [response, setResponse] = useState(null);
-  useEffect(() => {
+  const [response, setResponse] = react.useState(null);
+  react.useEffect(() => {
     function onEvent(...args) {
       if(onSuccess && typeof onSuccess === 'function') {
         onSuccess(...args);
@@ -665,5 +642,14 @@ var useAuthenticationEvents = (event, onSuccess) => {
   return response;
 };
 
-export default useFeathers;
-export { useAuthenticate, useAuthenticationEvents, useCreate, useFind, useGet, useLogout, usePatch, useRealtime, useRemove, useUpdate };
+exports.default = useFeathers;
+exports.useAuthenticate = useAuthenticate;
+exports.useAuthenticationEvents = useAuthenticationEvents;
+exports.useCreate = useCreate;
+exports.useFind = useFind;
+exports.useGet = useGet;
+exports.useLogout = useLogout;
+exports.usePatch = usePatch;
+exports.useRealtime = useRealtime;
+exports.useRemove = useRemove;
+exports.useUpdate = useUpdate;
