@@ -9,7 +9,9 @@ const feathers = require('@feathersjs/feathers');
 const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
-
+const auth = require('@feathersjs/authentication');
+const local = require('@feathersjs/authentication-local');
+const jwt = require('@feathersjs/authentication-jwt');
 
 const middleware = require('./middleware');
 const services = require('./services');
@@ -18,8 +20,11 @@ const channels = require('./channels');
 
 const app = express(feathers());
 
+
 // Load app configuration
 app.configure(configuration());
+
+const configAuth = app.get('authentication');
 // Enable security, CORS, compression, favicon and body parsing
 app.use(helmet());
 app.use(cors());
@@ -34,6 +39,7 @@ app.use('/', express.static(app.get('public')));
 app.configure(express.rest());
 app.configure(socketio());
 
+
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);
 // Set up our services (see `services/index.js`)
@@ -41,10 +47,49 @@ app.configure(services);
 // Set up event channels (see channels.js)
 app.configure(channels);
 
+app.configure(auth(configAuth));
+app.configure(local());
+app.configure(jwt());
+
 // Configure a middleware for 404s and the error handler
 app.use(express.notFound());
 app.use(express.errorHandler({ logger }));
 
 app.hooks(appHooks);
+
+
+app.service('authentication').hooks({
+  before: {
+    create: [
+      auth.hooks.authenticate(['jwt', 'local'])
+    ],
+    remove: [
+      auth.hooks.authenticate('jwt')
+    ]
+  },
+  after: {
+    create: [
+      context => {
+        context.result.user = context.params.user;
+        return context;
+      }
+    ]
+  }
+});
+
+app.service('users').hooks({
+  before: {
+    create: [
+      local.hooks.hashPassword()
+    ],
+    patch: [
+      local.hooks.hashPassword()
+    ],
+    update: [
+      local.hooks.hashPassword()
+    ]
+  }
+});
+
 
 module.exports = app;

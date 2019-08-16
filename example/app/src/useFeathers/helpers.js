@@ -117,3 +117,4 @@ export function destructuringRemoveParams(...args) {
 
   return { id, path, query, isFunction };
 };
+

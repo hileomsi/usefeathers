@@ -6,6 +6,9 @@ import usePatch from './usePatch';
 import useUpdate from './useUpdate';
 import useRemove from './useRemove';
 import useRealtime from './useRealtime';
+import useLogout from './useLogout';
+import useAuthenticate from './useAuthenticate';
+import useAuthenticationEvents from './useAuthenticationEvents';
 
 export default useFeathers; 
 export {
@@ -15,5 +18,8 @@ export {
   usePatch,
   useUpdate,
   useRemove,
-  useRealtime
+  useRealtime,
+  useAuthenticationEvents,
+  useAuthenticate,
+  useLogout
 };
