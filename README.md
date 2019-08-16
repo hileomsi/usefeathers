@@ -18,12 +18,28 @@
 
 ### Additional features
 
+- [x] Paginate
+- [x] Realtime
+- [ ] Realtime deep populate
 - [ ] Cache
 
-- [ ] Realtime deep populate
+### Install
 
-  
+Use yarn
+```shell
+yarn add useFeathers
+```
 
+or use npm
+```shell
+npm i useFeathers --save 
+```
+
+### Demo
+
+
+
+### Example
 #### useFeathers
 
 Set instante feathers client for initilalization hooks.
@@ -178,3 +194,5 @@ const response = useAuthenticationEvents('authenticated', (...args) => {
 // events "authenticated", "logout", "reauthentication-error"
 ```
 
+
+### License
