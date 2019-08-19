@@ -13,6 +13,14 @@
     "productivity",
     "realtime"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hileomsi/useFeathers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hileomsi/useFeathers/issues"
+  },
+  "homepage": "https://github.com/hileomsi/useFeathers",
   "main": "dist/useFeathers.cjs.js",
   "module": "dist/useFeathers.esm.js",
   "browser": "dist/useFeathers.umd.js",
