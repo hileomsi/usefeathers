@@ -28,12 +28,12 @@
 
 Use yarn
 ```shell
-yarn add useFeathers
+yarn add usefeathers
 ```
 
 or use npm
 ```shell
-npm i useFeathers --save 
+npm i usefeathers --save 
 ```
 
 ### Demo
