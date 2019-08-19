@@ -39,12 +39,12 @@ function destructuringFindParams(...args) {
   if(isFunction) {
     const [getPath, optionsParam] = args;
     path = getPath();
-    options = optionsParam;
+    options = optionsParam || defaultOptions;
   } else {
     const [pathParam, queryParam, optionsParam] = args;
     path = pathParam;
-    query = queryParam;
-    options = optionsParam;
+    query = queryParam || {};
+    options = optionsParam || defaultOptions;
   }
 
   return { path, query, options, isFunction };
@@ -60,13 +60,13 @@ function destructuringGetParams(...args) {
   if(isFunction) {
     const [getPath, optionsParam] = args;
     path = getPath();
-    options = optionsParam;
+    options = optionsParam || defaultOptions;
   } else {
     const [pathParam, idParam, queryParam, optionsParam] = args;
     id = idParam;
     path = pathParam;
-    query = queryParam;
-    options = optionsParam;
+    query = queryParam || {};
+    options = optionsParam || defaultOptions;
   }
 
   return { path, id, query, options, isFunction };
@@ -85,7 +85,7 @@ function destructuringCreateParams(...args) {
     const [pathParam, dataParam, queryParam] = args;
     path = pathParam;
     data = dataParam || data;
-    query = queryParam;
+    query = queryParam || {};
   }
 
   return { path, data, query, isFunction };
@@ -105,7 +105,7 @@ function destructuringPatchAndUpdateParams(...args) {
     id = idParam;
     path = pathParam;
     data = dataParam || data;
-    query = queryParam;
+    query = queryParam || {};
   }
 
   return { path, id, data, query, isFunction };
@@ -123,7 +123,7 @@ function destructuringRemoveParams(...args) {
     const [pathParam, idParam, queryParam] = args;
     id = idParam;
     path = pathParam;
-    query = queryParam;
+    query = queryParam || {};
   }
 
   return { id, path, query, isFunction };
@@ -603,6 +603,7 @@ var useAuthenticate = () => {
       const response = await Feathers.authenticate(data);
       setResponse(response);
       setAuthenticated(true);
+      setError(null);
     } catch(err) {
       setError(err.message);
       setAuthenticated(false);
