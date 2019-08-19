@@ -21,6 +21,7 @@
 - [x] Paginate
 - [x] Realtime
 - [ ] Realtime deep populate
+- [ ] Custom filter realtime
 - [ ] Cache
 
 ### Install
