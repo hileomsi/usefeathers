@@ -50,7 +50,7 @@ import io from 'socket.io-client';
 import feathers from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
 import auth from '@feathersjs/authentication-client';
-import useFeathers from 'useFeathers';
+import useFeathers from 'usefeathers';
 
 const URL = 'http://localhost:3030';
 
@@ -67,7 +67,7 @@ useFeathers(feathers);
 #### useFind
 
 ```javascript
-import { useFind } from 'useFeathers';
+import { useFind } from 'usefeathers';
 
 const [users, loading, error] = useFind('users', query);
 // OR
@@ -91,7 +91,7 @@ const options = {
 ####  useGet
 
 ```javascript
-import { useGet } from 'useFeathers';
+import { useGet } from 'usefeathers';
 
 const options = { realtime: true }; // optional
 const [user, loading, error] = useGet('users', id, query, options);
@@ -109,7 +109,7 @@ const options = {
 #### useCreate
 
 ```javascript
-import { useCreate } from 'useFeathers';
+import { useCreate } from 'usefeathers';
 
 const [user, loading, error] = useCreate('users', {
 	name: 'foo',
@@ -125,7 +125,7 @@ const response = await createUsers(data, query); // return Promise
 #### usePatch
 
 ```javascript
-import { usePatch } from 'useFeathers';
+import { usePatch } from 'usefeathers';
 
 const [user, loading, error] = usePatch('users', id, {
 	name: 'foo',
@@ -141,7 +141,7 @@ const response = await patchUser(id, data, query); // return Promise
 #### useUpdate
 
 ```javascript
-import { useUpdate } from 'useFeathers';
+import { useUpdate } from 'usefeathers';
 
 const [user, loading, error] = useUpdate('users', id, {
 	name: 'foo',
@@ -157,7 +157,7 @@ const response = await updateUser(id, data, query); // return Promise
 #### useRemove
 
 ```javascript
-import { useRemove } from 'useFeathers';
+import { useRemove } from 'usefeathers';
 
 const [user, loading, error] = useRemove('users', id, query);
 // OR
@@ -170,7 +170,7 @@ const response = await removeUser(id, query); // return Promise
 #### useRealtime
 
 ```javascript
-import { useRealtime } from 'useFeathers';
+import { useRealtime } from 'usefeathers';
 
 // events "created", "patched", "updated", "removed"
 
@@ -184,7 +184,7 @@ const [userCreated] = useRealtime('users', 'created', (userCreated) => {
 #### useAuthenticate / useLogout / useAuthenticationEvents
 
 ```javascript
-import { useAuthenticate, useLogout, useAuthenticationEvents } from 'useFeathers';
+import { useAuthenticate, useLogout, useAuthenticationEvents } from 'usefeathers';
 
 const [authenticate, dataAuth, authenticated, loading, error] = useAuthenticate();
 const [logout] = useLogout();
