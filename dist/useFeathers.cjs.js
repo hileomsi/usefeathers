@@ -604,6 +604,8 @@ var useAuthenticate = () => {
       setResponse(response);
       setAuthenticated(true);
       setError(null);
+
+      return response;
     } catch(err) {
       setError(err.message);
       setAuthenticated(false);
